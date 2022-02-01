@@ -1,7 +1,7 @@
 import React from 'react';
 
-const AppMain = () => {
+const MainPage = () => {
     return <></>;
 };
 
-export default AppMain;
+export default MainPage;
