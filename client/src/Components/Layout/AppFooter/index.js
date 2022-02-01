@@ -4,10 +4,11 @@ import styled from 'styled-components';
 const FooterContainer = styled.footer`
     display: table;
     position: fixed;
+    z-index: 10;
     bottom: 0;
     width: 100%;
     height: 25px;
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: rgb(250, 250, 252);
 `;
 
 const FooterContent = styled.div`

@@ -14,6 +14,9 @@ const globalStyles = createGlobalStyle`
         font-family: 'Sunflower', sans-serif;
         background-color: #f9f9f9;
     };
+    #content {
+        padding: 50px 0 25px 200px;
+    }
 `;
 
 export default globalStyles;

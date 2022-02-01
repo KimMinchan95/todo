@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Logo = styled.img`
-    height: 30px;
-    margin-top: 5px;
+    height: 25px;
+    margin: 12.5px 0;
 `;
 
 const AppLogo = () => {

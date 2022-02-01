@@ -2,16 +2,24 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import AppFooter from './AppFooter';
 import AppHeader from './AppHeader';
+import AppSidebar from './AppSidebar';
 import MainPage from '../MainPages/MainPage';
+import TodoPage from '../MainPages/Todopage';
 
 const AppMain = () => {
     return (
         <>
-            <AppHeader />
-            <Routes>
-                <Route path="/" element={<MainPage />} />
-            </Routes>
-            <AppFooter />
+            <>
+                <AppHeader />
+                <AppSidebar />
+                <div id="content">
+                    <Routes>
+                        <Route path="/" element={<MainPage />} />
+                        <Route path="/todo" element={<TodoPage />} />
+                    </Routes>
+                </div>
+                <AppFooter />
+            </>
         </>
     );
 };
