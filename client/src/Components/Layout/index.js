@@ -4,7 +4,7 @@ import AppFooter from './AppFooter';
 import AppHeader from './AppHeader';
 import AppSidebar from './AppSidebar';
 import MainPage from '../MainPages/MainPage';
-import TodoPage from '../MainPages/Todopage';
+import TodoPage from '../MainPages/Todaypage';
 
 const AppMain = () => {
     return (
@@ -15,7 +15,7 @@ const AppMain = () => {
                 <div id="content">
                     <Routes>
                         <Route path="/" element={<MainPage />} />
-                        <Route path="/todo" element={<TodoPage />} />
+                        <Route path="/today" element={<TodoPage />} />
                     </Routes>
                 </div>
                 <AppFooter />
