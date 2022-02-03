@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CgProfile } from 'react-icons/cg';
 
 const ProfileContainer = styled.div`
     display: inline-block;
