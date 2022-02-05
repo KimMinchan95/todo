@@ -8,9 +8,26 @@ const MainPageContainer = styled.div`
     width: 100%;
 `;
 
+const TodoContainer = styled.main`
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    color: white;
+`;
+
+const Title = styled.div`
+    height: 30px;
+`;
+
 const MainPage = () => {
     const { backgroundColor } = useSelector(state => state.AppColor);
-    return <MainPageContainer backgroundColor={backgroundColor}></MainPageContainer>;
+    return (
+        <MainPageContainer backgroundColor={backgroundColor}>
+            <TodoContainer>
+                <Title>전체일정</Title>
+            </TodoContainer>
+        </MainPageContainer>
+    );
 };
 
 export default MainPage;

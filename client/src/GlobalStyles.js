@@ -11,7 +11,7 @@ const globalStyles = createGlobalStyle`
         box-sizing: border-box;
     };
     body {
-        font-family: 'Sunflower', sans-serif;
+        font-family: 'Jua', sans-serif;
         background-color: #f9f9f9;
     };
     #content {
