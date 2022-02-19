@@ -4,7 +4,7 @@ const initialState = {
     backgroundColor: '#B0A8B9',
 };
 
-const AppColor = createSlice({
+const { actions, reducer } = createSlice({
     name: 'appColor',
     initialState,
     reducers: {
@@ -14,5 +14,5 @@ const AppColor = createSlice({
     },
 });
 
-export const { setBackgroundColor } = AppColor.actions;
-export default AppColor.reducer;
+export const { setBackgroundColor } = actions;
+export default reducer;

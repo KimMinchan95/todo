@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setAddToTotal } from '../../../reducers/Todo';
 import { Input } from 'reactstrap';
 
 const MainPageContainer = styled.div`
@@ -39,15 +40,28 @@ const StyledInput = styled(Input)`
 `;
 
 const MainPage = () => {
+    const dispatch = useDispatch();
     const { backgroundColor } = useSelector(state => state.AppColor);
+    const { total: totalTodo } = useSelector(state => state.Todo);
+    const [inputValue, setInputValue] = useState('');
+
+    const handleInputValue = e => {
+        if (e.key === 'Enter') {
+            dispatch(setAddToTotal(e.target.value));
+            setInputValue('');
+        } else {
+            setInputValue(e.target.value);
+        }
+    };
+
     return (
         <MainPageContainer backgroundColor={backgroundColor}>
             <TodoContainer>
                 <TitleContainer>
                     <Title>전체 일정</Title>
                 </TitleContainer>
-                <TodoArea></TodoArea>
-                <StyledInput />
+                <TodoArea />
+                <StyledInput type="text" value={inputValue} onChange={handleInputValue} onKeyUp={handleInputValue} />
             </TodoContainer>
         </MainPageContainer>
     );
