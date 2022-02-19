@@ -60,7 +60,11 @@ const MainPage = () => {
                 <TitleContainer>
                     <Title>전체 일정</Title>
                 </TitleContainer>
-                <TodoArea />
+                <TodoArea>
+                    {totalTodo.map(({ id, content }) => (
+                        <div key={id}>{content}</div>
+                    ))}
+                </TodoArea>
                 <StyledInput type="text" value={inputValue} onChange={handleInputValue} onKeyUp={handleInputValue} />
             </TodoContainer>
         </MainPageContainer>

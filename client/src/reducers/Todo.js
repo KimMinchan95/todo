@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { nanoid } from 'nanoid';
+import moment from 'moment';
 
 const initialState = {
     total: [],
@@ -8,8 +10,15 @@ const { actions, reducer } = createSlice({
     name: 'todo',
     initialState,
     reducers: {
-        setAddToTotal: (state, action) => {
-            state.total.unshift(action.payload);
+        setAddToTotal: {
+            reducer: (state, action) => {
+                state.total.unshift(action.payload);
+            },
+            prepare: content => {
+                const id = nanoid();
+                const now = moment().unix();
+                return { payload: { id, content, now } };
+            },
         },
     },
 });
