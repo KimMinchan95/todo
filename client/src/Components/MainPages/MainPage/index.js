@@ -48,6 +48,12 @@ const StyledInput = styled(Input)`
     width: 100%;
 `;
 
+const SingleTodo = styled.div`
+    border: 1px solid black;
+    margin: 0.5rem 0;
+    padding: 0.2rem 0;
+`;
+
 const MainPage = () => {
     const dispatch = useDispatch();
     const { backgroundColor } = useSelector(state => state.AppColor);
@@ -75,7 +81,7 @@ const MainPage = () => {
                 <TodoArea>
                     <PerfectScrollbar>
                         {totalTodo.map(({ id, content }) => (
-                            <div key={id}>{content}</div>
+                            <SingleTodo key={id}>{content}</SingleTodo>
                         ))}
                     </PerfectScrollbar>
                 </TodoArea>
