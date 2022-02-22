@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { setAddToTotal } from '../../../reducers/Todo';
 import { Input } from 'reactstrap';
+import PerfectScrollbar from 'react-perfect-scrollbar';
+import 'react-perfect-scrollbar/dist/css/styles.css';
 
 const MainPageContainer = styled.div`
     background-color: ${({ backgroundColor }) => backgroundColor};
@@ -13,7 +15,7 @@ const MainPageContainer = styled.div`
 const TodoContainer = styled.main`
     width: 100%;
     height: 100%;
-    padding: 20px;
+    padding: 10px;
     color: white;
 `;
 
@@ -23,20 +25,33 @@ const TitleContainer = styled.div`
     width: 100%;
 `;
 
-const Title = styled.div`
+const Title = styled.h1`
     display: table-cell;
     vertical-align: middle;
     font-size: 30px;
 `;
 
+const TotalCount = styled.div`
+    font-size: 15px;
+    padding-bottom: 5px;
+`;
+
 const TodoArea = styled.main`
-    height: calc(100% - 90px);
+    height: calc(100% - 110px);
+    width: 100%;
+    font-size: 20px;
     margin-bottom: 10px;
 `;
 
 const StyledInput = styled(Input)`
     height: 40px;
     width: 100%;
+`;
+
+const SingleTodo = styled.div`
+    border: 1px solid black;
+    margin: 0.5rem 0;
+    padding: 0.2rem 0;
 `;
 
 const MainPage = () => {
@@ -47,8 +62,10 @@ const MainPage = () => {
 
     const handleInputValue = e => {
         if (e.key === 'Enter') {
-            dispatch(setAddToTotal(e.target.value));
-            setInputValue('');
+            if (inputValue !== '') {
+                dispatch(setAddToTotal(e.target.value));
+                setInputValue('');
+            }
         } else {
             setInputValue(e.target.value);
         }
@@ -60,12 +77,21 @@ const MainPage = () => {
                 <TitleContainer>
                     <Title>전체 일정</Title>
                 </TitleContainer>
+                <TotalCount>일정 숫자 : {totalTodo.length}</TotalCount>
                 <TodoArea>
-                    {totalTodo.map(({ id, content }) => (
-                        <div key={id}>{content}</div>
-                    ))}
+                    <PerfectScrollbar>
+                        {totalTodo.map(({ id, content }) => (
+                            <SingleTodo key={id}>{content}</SingleTodo>
+                        ))}
+                    </PerfectScrollbar>
                 </TodoArea>
-                <StyledInput type="text" value={inputValue} onChange={handleInputValue} onKeyUp={handleInputValue} />
+                <StyledInput
+                    type="text"
+                    value={inputValue}
+                    onChange={handleInputValue}
+                    onKeyUp={handleInputValue}
+                    maxLength="50"
+                />
             </TodoContainer>
         </MainPageContainer>
     );
