@@ -1,5 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { nanoid } from 'nanoid';
+import { createSlice, nanoid } from '@reduxjs/toolkit';
 import moment from 'moment';
 
 const initialState = {
