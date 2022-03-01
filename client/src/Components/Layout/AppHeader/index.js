@@ -6,6 +6,7 @@ import CustomModal from '../../Common/CustomModal';
 import { CirclePicker } from 'react-color';
 import { setBackgroundColor } from '../../../reducers/AppColor';
 import { useDispatch } from 'react-redux';
+import { colors } from './color';
 
 const HeaderContainer = styled.header`
     display: flex;
@@ -24,27 +25,6 @@ const ColorPickerIcon = styled.img`
     height: 35px;
     cursor: pointer;
 `;
-
-const colors = [
-    '#B0A8B9',
-    '#F3C5FF',
-    '#f44336',
-    '#9c27b0',
-    '#673ab7',
-    '#3f51b5',
-    '#2196f3',
-    '#03a9f4',
-    '#00bcd4',
-    '#009688',
-    '#4caf50',
-    '#8bc34a',
-    '#cddc39',
-    '#936C00',
-    '#ff9800',
-    '#000000',
-    '#795548',
-    '#607d8b',
-];
 
 const AppHeader = () => {
     const dispatch = useDispatch();

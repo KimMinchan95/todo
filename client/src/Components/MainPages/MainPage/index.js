@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
-import { setAddToTotal } from '../../../reducers/Todo';
+import { setAddToTotal, setDoneTodo } from '../../../reducers/Todo';
 import { Input } from 'reactstrap';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import 'react-perfect-scrollbar/dist/css/styles.css';
@@ -52,6 +52,12 @@ const SingleTodo = styled.div`
     border: 1px solid black;
     margin: 0.5rem 0;
     padding: 0.2rem 0;
+    ${({ done }) =>
+        done &&
+        css`
+            text-decoration: line-through;
+            color: #c2c2c2;
+        `}
 `;
 
 const MainPage = () => {
@@ -71,6 +77,10 @@ const MainPage = () => {
         }
     };
 
+    const handleClickDone = id => {
+        dispatch(setDoneTodo(id));
+    };
+
     return (
         <MainPageContainer backgroundColor={backgroundColor}>
             <TodoContainer>
@@ -80,8 +90,10 @@ const MainPage = () => {
                 <TotalCount>일정 숫자 : {totalTodo.length}</TotalCount>
                 <TodoArea>
                     <PerfectScrollbar>
-                        {totalTodo.map(({ id, content }) => (
-                            <SingleTodo key={id}>{content}</SingleTodo>
+                        {totalTodo.map(({ id, content, done, now }) => (
+                            <SingleTodo key={id} done={done} onClick={() => handleClickDone(id)}>
+                                {content}
+                            </SingleTodo>
                         ))}
                     </PerfectScrollbar>
                 </TodoArea>

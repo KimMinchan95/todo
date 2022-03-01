@@ -16,11 +16,21 @@ const { actions, reducer } = createSlice({
             prepare: content => {
                 const id = nanoid();
                 const now = moment().unix();
-                return { payload: { id, content, now } };
+                const done = false;
+                return { payload: { id, content, now, done } };
             },
+        },
+        setDoneTodo: (state, action) => {
+            state.total = state.total.map(todo => {
+                if (todo.id === action.payload) {
+                    return { ...todo, done: !todo.done };
+                } else {
+                    return todo;
+                }
+            });
         },
     },
 });
 
-export const { setAddToTotal } = actions;
+export const { setAddToTotal, setDoneTodo } = actions;
 export default reducer;
