@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
-import { setAddToTotal, setDoneTodo } from '../../../reducers/Todo';
-import { Input } from 'reactstrap';
+import { setAddToTotal, setDoneTodo, setDeleteTodo } from '../../../reducers/Todo';
+import { Input, Button } from 'reactstrap';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 
@@ -81,6 +81,11 @@ const MainPage = () => {
         dispatch(setDoneTodo(id));
     };
 
+    const handleDeleteTodo = (id, e) => {
+        e.stopPropagation();
+        dispatch(setDeleteTodo(id));
+    };
+
     return (
         <MainPageContainer backgroundColor={backgroundColor}>
             <TodoContainer>
@@ -92,6 +97,7 @@ const MainPage = () => {
                     <PerfectScrollbar>
                         {totalTodo.map(({ id, content, done, now }) => (
                             <SingleTodo key={id} done={done} onClick={() => handleClickDone(id)}>
+                                <Button onClick={e => handleDeleteTodo(id, e)}>X</Button>
                                 {content}
                             </SingleTodo>
                         ))}
