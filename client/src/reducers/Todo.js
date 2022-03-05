@@ -29,8 +29,11 @@ const { actions, reducer } = createSlice({
                 }
             });
         },
+        setDeleteTodo: (state, action) => {
+            state.total = state.total.filter(todo => todo.id !== action.payload);
+        },
     },
 });
 
-export const { setAddToTotal, setDoneTodo } = actions;
+export const { setAddToTotal, setDoneTodo, setDeleteTodo } = actions;
 export default reducer;
