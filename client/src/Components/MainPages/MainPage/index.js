@@ -37,7 +37,7 @@ const TotalCount = styled.div`
 `;
 
 const TodoArea = styled.main`
-    height: calc(100% - 110px);
+    height: calc(100% - 135px);
     width: 100%;
     font-size: 20px;
     margin-bottom: 10px;
@@ -86,6 +86,13 @@ const MainPage = () => {
         dispatch(setDeleteTodo(id));
     };
 
+    const lastLength = totalTodo.reduce((acc, cur) => {
+        if (!cur.done) {
+            acc++;
+        }
+        return acc;
+    }, 0);
+
     return (
         <MainPageContainer backgroundColor={backgroundColor}>
             <TodoContainer>
@@ -93,6 +100,7 @@ const MainPage = () => {
                     <Title>전체 일정</Title>
                 </TitleContainer>
                 <TotalCount>일정 숫자 : {totalTodo.length}</TotalCount>
+                <TotalCount>남은 일정 : {lastLength}</TotalCount>
                 <TodoArea>
                     <PerfectScrollbar>
                         {totalTodo.map(({ id, content, done, now }) => (
