@@ -52,12 +52,18 @@ const SingleTodo = styled.div`
     border: 1px solid black;
     margin: 0.5rem 0;
     padding: 0.2rem 0;
+    cursor: default;
     ${({ done }) =>
         done &&
         css`
             text-decoration: line-through;
             color: #c2c2c2;
         `}
+`;
+
+const StyledButton = styled(Button)`
+    padding: 0 6px !important;
+    margin: 0 2px;
 `;
 
 const MainPage = () => {
@@ -105,7 +111,7 @@ const MainPage = () => {
                     <PerfectScrollbar>
                         {totalTodo.map(({ id, content, done, now }) => (
                             <SingleTodo key={id} done={done} onClick={() => handleClickDone(id)}>
-                                <Button onClick={e => handleDeleteTodo(id, e)}>X</Button>
+                                <StyledButton onClick={e => handleDeleteTodo(id, e)}>X</StyledButton>
                                 {content}
                             </SingleTodo>
                         ))}
