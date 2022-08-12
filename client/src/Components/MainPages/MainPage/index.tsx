@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import styled, { css } from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { setAddToTotal, setDoneTodo, setDeleteTodo } from '../../../reducers/Todo';
 import { Input, Button } from 'reactstrap';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import 'react-perfect-scrollbar/dist/css/styles.css';
+import { StyledSingleTodo, SingleTodoInterface, StyledBackGroundColorContainer, RootState } from '../../../interfaces';
 
-const MainPageContainer = styled.div`
+const MainPageContainer = styled.div<StyledBackGroundColorContainer>`
     background-color: ${({ backgroundColor }) => backgroundColor};
     height: calc(100vh - 75px);
     width: 100%;
@@ -48,7 +49,7 @@ const StyledInput = styled(Input)`
     width: 100%;
 `;
 
-const SingleTodo = styled.div`
+const SingleTodo = styled.div<StyledSingleTodo>`
     border: 1px solid black;
     margin: 0.5rem 0;
     padding: 0.2rem 0;
@@ -68,13 +69,13 @@ const StyledButton = styled(Button)`
 
 const MainPage = () => {
     const dispatch = useDispatch();
-    const { backgroundColor } = useSelector(state => state.AppColor);
-    const { total: totalTodo } = useSelector(state => state.Todo);
+    const { backgroundColor } = useSelector((state: RootState) => state.AppColor);
+    const { total: totalTodo } = useSelector((state: RootState) => state.Todo);
     const [inputValue, setInputValue] = useState('');
 
-    const handleInputValue = e => {
-        if (e.key === 'Enter') {
-            if (inputValue !== '') {
+    const handleInputValue = (e: any) => {
+        if ('key' in e && e.key === 'Enter') {
+            if (e.target && e.target.value && inputValue !== '') {
                 dispatch(setAddToTotal(e.target.value));
                 setInputValue('');
             }
@@ -83,16 +84,16 @@ const MainPage = () => {
         }
     };
 
-    const handleClickDone = id => {
+    const handleClickDone = (id: number) => {
         dispatch(setDoneTodo(id));
     };
 
-    const handleDeleteTodo = (id, e) => {
+    const handleDeleteTodo = (id: number, e: ChangeEvent<HTMLInputElement>) => {
         e.stopPropagation();
         dispatch(setDeleteTodo(id));
     };
 
-    const lastLength = totalTodo.reduce((acc, cur) => {
+    const lastLength = totalTodo.reduce<number>((acc: number, cur: SingleTodoInterface) => {
         if (!cur.done) {
             acc++;
         }
@@ -109,12 +110,19 @@ const MainPage = () => {
                 <TotalCount>남은 일정 : {lastLength}</TotalCount>
                 <TodoArea>
                     <PerfectScrollbar>
-                        {totalTodo.map(({ id, content, done, now }) => (
-                            <SingleTodo key={id} done={done} onClick={() => handleClickDone(id)}>
-                                <StyledButton onClick={e => handleDeleteTodo(id, e)}>X</StyledButton>
-                                {content}
-                            </SingleTodo>
-                        ))}
+                        {totalTodo.map(({ id, content, done, now }: SingleTodoInterface) => {
+                            console.log(done);
+                            return (
+                                <SingleTodo key={id} done={done} onClick={() => handleClickDone(id)}>
+                                    <StyledButton
+                                        onClick={(e: ChangeEvent<HTMLInputElement>) => handleDeleteTodo(id, e)}
+                                    >
+                                        X
+                                    </StyledButton>
+                                    {content}
+                                </SingleTodo>
+                            );
+                        })}
                     </PerfectScrollbar>
                 </TodoArea>
                 <StyledInput

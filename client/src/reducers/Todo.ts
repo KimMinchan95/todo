@@ -1,27 +1,30 @@
-import { createSlice, nanoid } from '@reduxjs/toolkit';
+import { createSlice, nanoid, PayloadAction } from '@reduxjs/toolkit';
 import moment from 'moment';
+import { SingleTodoInterface } from '../interfaces';
 
 const initialState = {
-    total: [],
+    total: [] as SingleTodoInterface[],
 };
 
+// @ts-ignore
 const { actions, reducer } = createSlice({
     name: 'todo',
     initialState,
     reducers: {
         setAddToTotal: {
-            reducer: (state, action) => {
+            reducer: (state, action: PayloadAction<SingleTodoInterface>) => {
                 state.total.unshift(action.payload);
             },
-            prepare: content => {
+            // @ts-ignore
+            prepare: (content: string) => {
                 const id = nanoid();
                 const now = moment().unix();
                 const done = false;
                 return { payload: { id, content, now, done } };
             },
         },
-        setDoneTodo: (state, action) => {
-            state.total = state.total.map(todo => {
+        setDoneTodo: (state, action: PayloadAction<number>) => {
+            state.total = state.total.map<SingleTodoInterface>((todo: SingleTodoInterface) => {
                 if (todo.id === action.payload) {
                     return { ...todo, done: !todo.done };
                 } else {
@@ -30,7 +33,7 @@ const { actions, reducer } = createSlice({
             });
         },
         setDeleteTodo: (state, action) => {
-            state.total = state.total.filter(todo => todo.id !== action.payload);
+            state.total = state.total.filter((todo: SingleTodoInterface) => todo.id !== action.payload);
         },
     },
 });

@@ -34,7 +34,7 @@ const AppHeader = () => {
         setColorModal(!colorModal);
     };
 
-    const handleColorChange = color => dispatch(setBackgroundColor(color.hex));
+    const handleColorChange = (color: { hex: string }) => dispatch(setBackgroundColor(color.hex));
 
     return (
         <>
@@ -45,6 +45,7 @@ const AppHeader = () => {
                     <AppProfile />
                 </div>
             </HeaderContainer>
+            {/*@ts-ignore */}
             <CustomModal
                 initModal={colorModal}
                 toggleModal={handleColorModal}
