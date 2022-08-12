@@ -8,9 +8,9 @@ export const sidebarData = [
         path: '/',
         icon: <VscChecklist />,
     },
-    // {
-    //     title: '오늘 할 일',
-    //     path: '/today',
-    //     icon: <TiWeatherSunny />,
-    // },
+    {
+        title: '오늘 할 일',
+        path: '/today',
+        icon: <TiWeatherSunny />,
+    },
 ];

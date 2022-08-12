@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { sidebarData } from './Componetns/sidebarData';
+import { sidebarData } from './Components/sidebarData';
 
 const SidebarContainer = styled.nav`
     position: fixed;
