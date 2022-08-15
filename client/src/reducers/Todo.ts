@@ -18,9 +18,9 @@ const { actions, reducer } = createSlice({
             // @ts-ignore
             prepare: (content: string) => {
                 const id = nanoid();
-                const today = moment().format('YYYYMMDD');
+                const time = moment().format('YYYYMMDD');
                 const done = false;
-                return { payload: { id, content, today, done } };
+                return { payload: { id, content, time, done } };
             },
         },
         setDoneTodo: (state, action: PayloadAction<number>) => {

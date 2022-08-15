@@ -9,7 +9,7 @@ export interface StyledSingleTodo {
 export interface SingleTodoInterface {
     id: number;
     content: string;
-    today: string;
+    time: string;
     done: boolean;
 }
 
@@ -20,4 +20,9 @@ export interface RootState {
     Todo: {
         total: [];
     };
+}
+
+export interface TodoListProps {
+    title: string;
+    totalTodo: SingleTodoInterface[];
 }
