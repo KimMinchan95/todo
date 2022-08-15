@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, FC } from 'react';
 import styled, { css } from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { setAddToTotal, setDoneTodo, setDeleteTodo } from '../../../reducers/Todo';
@@ -67,7 +67,7 @@ const StyledButton = styled(Button)`
     margin: 0 2px;
 `;
 
-const MainPage = () => {
+const MainPage: FC = () => {
     const dispatch = useDispatch();
     const { backgroundColor } = useSelector((state: RootState) => state.AppColor);
     const { total: totalTodo } = useSelector((state: RootState) => state.Todo);
@@ -93,6 +93,7 @@ const MainPage = () => {
         dispatch(setDeleteTodo(id));
     };
 
+    // 남은 일정 수 count
     const lastLength = totalTodo.reduce<number>((acc: number, cur: SingleTodoInterface) => {
         if (!cur.done) {
             acc++;
@@ -110,8 +111,7 @@ const MainPage = () => {
                 <TotalCount>남은 일정 : {lastLength}</TotalCount>
                 <TodoArea>
                     <PerfectScrollbar>
-                        {totalTodo.map(({ id, content, done, now }: SingleTodoInterface) => {
-                            console.log(done);
+                        {totalTodo.map(({ id, content, done, today }: SingleTodoInterface) => {
                             return (
                                 <SingleTodo key={id} done={done} onClick={() => handleClickDone(id)}>
                                     <StyledButton

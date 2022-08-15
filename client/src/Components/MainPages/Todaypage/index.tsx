@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { StyledBackGroundColorContainer, RootState } from '../../../interfaces';
@@ -8,8 +9,10 @@ const TodayPageContainer = styled.div<StyledBackGroundColorContainer>`
     width: 100%;
 `;
 
-const TodayPage = () => {
+const TodayPage: FC = () => {
     const { backgroundColor } = useSelector((state: RootState) => state.AppColor);
+    const { total: totalTodo } = useSelector((state: RootState) => state.Todo);
+
     return <TodayPageContainer backgroundColor={backgroundColor}></TodayPageContainer>;
 };
 

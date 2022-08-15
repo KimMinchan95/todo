@@ -9,7 +9,7 @@ export interface StyledSingleTodo {
 export interface SingleTodoInterface {
     id: number;
     content: string;
-    now: number;
+    today: string;
     done: boolean;
 }
 
