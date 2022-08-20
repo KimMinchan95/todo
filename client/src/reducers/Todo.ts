@@ -6,7 +6,6 @@ const initialState = {
     total: [] as SingleTodoInterface[],
 };
 
-// @ts-ignore
 const { actions, reducer } = createSlice({
     name: 'todo',
     initialState,
@@ -15,7 +14,6 @@ const { actions, reducer } = createSlice({
             reducer: (state, action: PayloadAction<SingleTodoInterface>) => {
                 state.total.unshift(action.payload);
             },
-            // @ts-ignore
             prepare: (content: string) => {
                 const id = nanoid();
                 const time = moment().format('YYYYMMDD');
@@ -23,7 +21,7 @@ const { actions, reducer } = createSlice({
                 return { payload: { id, content, time, done } };
             },
         },
-        setDoneTodo: (state, action: PayloadAction<number>) => {
+        setDoneTodo: (state, action: PayloadAction<string>) => {
             state.total = state.total.map<SingleTodoInterface>((todo: SingleTodoInterface) => {
                 if (todo.id === action.payload) {
                     return { ...todo, done: !todo.done };

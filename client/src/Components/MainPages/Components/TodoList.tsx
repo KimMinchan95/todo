@@ -58,11 +58,11 @@ const TodoList: FC<TodoListProps> = ({ title, totalTodo }) => {
         return acc;
     }, 0);
 
-    const handleClickDone = (id: number) => {
+    const handleClickDone = (id: string) => {
         dispatch(setDoneTodo(id));
     };
 
-    const handleDeleteTodo = (id: number, e: ChangeEvent<HTMLInputElement>) => {
+    const handleDeleteTodo = (id: string, e: ChangeEvent<HTMLInputElement>) => {
         e.stopPropagation();
         dispatch(setDeleteTodo(id));
     };
