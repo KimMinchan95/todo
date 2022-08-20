@@ -42,10 +42,9 @@ const AppHeader = () => {
                 <AppLogo />
                 <div>
                     <ColorPickerIcon src={process.env.PUBLIC_URL + 'img/colorPicker.png'} onClick={handleColorModal} />
-                    <AppProfile />
+                    {/*<AppProfile />*/}
                 </div>
             </HeaderContainer>
-            {/*@ts-ignore */}
             <CustomModal
                 initModal={colorModal}
                 toggleModal={handleColorModal}
@@ -54,6 +53,7 @@ const AppHeader = () => {
                     <CirclePicker width="445px" circleSize={56} onChangeComplete={handleColorChange} colors={colors} />
                 }
                 removeCancel
+                removeOk={false}
             />
         </>
     );

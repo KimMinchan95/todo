@@ -7,7 +7,7 @@ export interface StyledSingleTodo {
 }
 
 export interface SingleTodoInterface {
-    id: number;
+    id: string;
     content: string;
     time: string;
     done: boolean;
