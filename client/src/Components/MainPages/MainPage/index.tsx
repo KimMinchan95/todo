@@ -1,29 +1,11 @@
 import { useState, FC } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
-import { setAddToTotal, setDoneTodo, setDeleteTodo } from '../../../reducers/Todo';
+import { setAddToTotal } from '../../../reducers/Todo';
 import { Input } from 'reactstrap';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import { StyledBackGroundColorContainer, RootState } from '../../../interfaces';
 import TodoList from '../Components/TodoList';
-
-const MainPageContainer = styled.div<StyledBackGroundColorContainer>`
-    background-color: ${({ backgroundColor }) => backgroundColor};
-    height: calc(100vh - 75px);
-    width: 100%;
-`;
-
-const TodoContainer = styled.main`
-    width: 100%;
-    height: 100%;
-    padding: 10px;
-    color: white;
-`;
-
-const StyledInput = styled(Input)`
-    height: 40px;
-    width: 100%;
-`;
 
 const MainPage: FC = () => {
     const dispatch = useDispatch();
@@ -57,5 +39,23 @@ const MainPage: FC = () => {
         </MainPageContainer>
     );
 };
+
+const MainPageContainer = styled.div<StyledBackGroundColorContainer>`
+    background-color: ${({ backgroundColor }) => backgroundColor};
+    height: calc(100vh - 75px);
+    width: 100%;
+`;
+
+const TodoContainer = styled.main`
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    color: white;
+`;
+
+const StyledInput = styled(Input)`
+    height: 40px;
+    width: 100%;
+`;
 
 export default MainPage;

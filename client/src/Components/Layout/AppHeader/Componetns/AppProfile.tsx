@@ -1,6 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const AppProfile = () => {
+    return (
+        <ProfileContainer>
+            <ProfileIcon src={process.env.PUBLIC_URL + 'img/profile.png'} />
+        </ProfileContainer>
+    );
+};
+
 const ProfileContainer = styled.div`
     display: inline-block;
 `;
@@ -10,13 +18,5 @@ const ProfileIcon = styled.img`
     height: 35px;
     cursor: pointer;
 `;
-
-const AppProfile = () => {
-    return (
-        <ProfileContainer>
-            <ProfileIcon src={process.env.PUBLIC_URL + 'img/profile.png'} />
-        </ProfileContainer>
-    );
-};
 
 export default AppProfile;

@@ -1,4 +1,3 @@
-import React from 'react';
 import { VscChecklist } from 'react-icons/vsc';
 import { TiWeatherSunny } from 'react-icons/ti';
 

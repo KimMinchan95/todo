@@ -3,6 +3,25 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { sidebarData } from './Components/sidebarData';
 
+const AppSidebar = () => {
+    return (
+        <SidebarContainer>
+            <NavMenuContainer>
+                {sidebarData.map((data, index) => {
+                    return (
+                        <NavMenu key={data.title + index}>
+                            <CustomLink to={data.path}>
+                                <IconStyle>{data.icon}</IconStyle>
+                                <MenuContent>{data.title}</MenuContent>
+                            </CustomLink>
+                        </NavMenu>
+                    );
+                })}
+            </NavMenuContainer>
+        </SidebarContainer>
+    );
+};
+
 const SidebarContainer = styled.nav`
     position: fixed;
     width: 200px;
@@ -45,24 +64,5 @@ const IconStyle = styled.span`
     padding: 1px;
     margin-left: 13px;
 `;
-
-const AppSidebar = () => {
-    return (
-        <SidebarContainer>
-            <NavMenuContainer>
-                {sidebarData.map((data, index) => {
-                    return (
-                        <NavMenu key={data.title + index}>
-                            <CustomLink to={data.path}>
-                                <IconStyle>{data.icon}</IconStyle>
-                                <MenuContent>{data.title}</MenuContent>
-                            </CustomLink>
-                        </NavMenu>
-                    );
-                })}
-            </NavMenuContainer>
-        </SidebarContainer>
-    );
-};
 
 export default AppSidebar;
